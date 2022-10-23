@@ -1,0 +1,1 @@
+import postService from "../services/postsService"
