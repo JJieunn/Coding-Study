@@ -34,12 +34,13 @@ const isPostExistByUserId = async (userId: string | string[] | undefined, postId
 
 
 const createPost = async (userId: string | string[] | undefined, postData: CreatePostDTO): Promise<object> => {
+  const userNumId = Number(userId);
   return await myDataSource
     .createQueryBuilder()
     .insert()
     .into(Posts)
     .values({
-      user_id: userId,
+      user_id: userNumId,
       title: postData.title,
       content: postData.content
     })

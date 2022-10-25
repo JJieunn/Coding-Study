@@ -7,27 +7,27 @@ export class Users {
   id?: number;
 
   @Column("varchar", { length: 15 })
-  nickname?: string;
+  nickname!: string;
 
   @Column("varchar", { length: 30 })
-  email?: string;
+  email!: string;
 
   @Column("varchar", { length: 1500 })
-  password?: string;
+  password!: string;
 
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
-  created_at?: Date;
+  created_at!: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
-  updated_at?: Date;
+  updated_at!: Date;
 
   @OneToMany(() => Posts, (post) => post.user)
-  posts?: Posts[];
+  posts!: Posts[];
 }
