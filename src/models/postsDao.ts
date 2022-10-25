@@ -34,13 +34,12 @@ const isPostExistByUserId = async (userId: string | string[] | undefined, postId
 
 
 const createPost = async (userId: string | string[] | undefined, postData: CreatePostDTO): Promise<object> => {
-  const userNumId: number = Number(userId);
   return await myDataSource
     .createQueryBuilder()
     .insert()
     .into(Posts)
     .values({
-      user_id: userNumId,
+      user_id: userId,
       title: postData.title,
       content: postData.content
     })
@@ -51,10 +50,10 @@ const createPost = async (userId: string | string[] | undefined, postData: Creat
 const getPostList = async (): Promise<Posts[]> => {
   return await myDataSource
     .createQueryBuilder()
-    .select(["post.id", "post.title", "post.created_at", "post.user_id", "user.nickname"])
-    .innerJoin(Users, "user", "post.user_id = user.id")
-    .from(Posts, "post")
-    .orderBy("post.created_at", "DESC")
+    .select(["p.id", "p.title", "p.created_at", "p.user_id", "u.nickname"])
+    .innerJoin(Users, "u", "p.user_id = u.id")
+    .from(Posts, "p")
+    .orderBy("p.created_at", "DESC")
     .getMany()
 }
 
@@ -62,10 +61,10 @@ const getPostList = async (): Promise<Posts[]> => {
 const getPost = async (postId: string): Promise<Posts | null> => {
   return await myDataSource
     .createQueryBuilder()
-    .select(["post.id", "post.title", "post.content", "post.created_at", "post.user_id", "user.nickname"])
-    .innerJoin(Users, "user", "post.user_id = user.id")
-    .from(Posts, "post")
-    .where("post.id = :postId", { postId })
+    .select(["p.id", "p.title", "p.content", "p.created_at", "p.user_id", "u.nickname"])
+    .innerJoin(Users, "u", "p.user_id = u.id")
+    .from(Posts, "p")
+    .where("p.id = :postId", { postId })
     .getOne()
 }
 

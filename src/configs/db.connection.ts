@@ -18,7 +18,7 @@ myDataSource
   .then(() => {
     console.log("Data Source has been initailized!");
   })
-  .catch((err: any) => {
+  .catch(() => {
     console.log("Database initialize failed.");
   });
 
