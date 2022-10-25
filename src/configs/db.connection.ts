@@ -1,4 +1,6 @@
 import { DataSource } from "typeorm"
+import { Posts } from "../entities/post.entity";
+import { Users } from "../entities/user.entity";
 
 const myDataSource = new DataSource ({
   type: "mysql",
@@ -6,7 +8,9 @@ const myDataSource = new DataSource ({
   port: 3306,
   username: process.env.TYPEORM_USERNAME,
   password: process.env.TYPEORM_PASSWORD,
-  database: process.env.TYPEORM_DATABASE
+  database: process.env.TYPEORM_DATABASE,
+  entities: [Posts, Users],
+  synchronize: true
 });
 
 myDataSource
@@ -14,7 +18,7 @@ myDataSource
   .then(() => {
     console.log("Data Source has been initailized!");
   })
-  .catch(() => {
+  .catch((err: any) => {
     console.log("Database initialize failed.");
   });
 
