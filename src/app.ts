@@ -7,7 +7,7 @@ const createApp = () => {
 
   const app = express()
   app.use(
-    cors(), express.json(), logger("tiny"), routes
+    cors(), express.json(), logger("dev"), routes
   )
 
   return app;
