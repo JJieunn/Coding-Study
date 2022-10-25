@@ -47,6 +47,16 @@
 
 <br />
 
+## 📍 구현 기능 
+- DTO를 이용해 req로 들어오는 data의 타입 지정
+- 로그인 기능이 없어 대신 headers에 userId 값을 넣었으며, 이 값이 저장될 user_id column의 type과 맞추고자 Number() 사용
+- TypeORM의 DataSource로 DB connection, entity 연동
+- createQueryBuilder를 이용해 게시글 CRUD 구현
+- Forbidden, Not Found 에러 처리를 위해 Error 클래스를 extends 시켜 별도의 파일에 분리 
+- 특정 게시글 정보, 수정, 삭제 할 때 postId를 기준으로 게시글을 count 하여 '0'일 경우 해당 게시글이 없다 판단하여 404 Not Found 에러 처리
+- 게시글 수정, 삭제할 때 userId 값과 postId 값을 모두 조건으로 하는 게시글을 count 하여 '0'일 경우 글에 대한 권한이 없다고 보고 403 Forbidden 에러 처리
+
+<br /> 
 
 ## 📍 문제 - 해결
 - **[문제1: 에러 핸들링]**
