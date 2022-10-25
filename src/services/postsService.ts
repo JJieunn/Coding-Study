@@ -11,19 +11,19 @@ const getPostList = async () => {
 }
 
 const getPost = async (postId: string) => {
-  await postDao.isPostExistByPostId(postId)
+  await postDao.isPostExistedByPostId(postId)
   return await postDao.getPost(postId)
 }
 
 const updatePost = async (userId: string | string[] | undefined, postId: string, updateData: UpdaatePostDTO) => {
-  await postDao.isPostExistByPostId(postId)
-  await postDao.isPostExistByUserId(userId, postId)
+  await postDao.isPostExistedByPostId(postId)
+  await postDao.isPostExistedByUserId(userId, postId)
   return await postDao.updatePost(postId, updateData)
 }
 
 const deletePost = async (userId: string | string[] | undefined, postId: string) => {
-  await postDao.isPostExistByPostId(postId)
-  await postDao.isPostExistByUserId(userId, postId)
+  await postDao.isPostExistedByPostId(postId)
+  await postDao.isPostExistedByUserId(userId, postId)
   await postDao.deletePost(postId)
 }
 

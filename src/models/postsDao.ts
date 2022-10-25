@@ -6,7 +6,7 @@ import { Users } from "../entities/user.entity";
 import { NotFoundError, ForbiddenError } from "../middlewares/createError"
 
 
-const isPostExistByPostId = async (postId: string): Promise<object | undefined> => {
+const isPostExistedByPostId = async (postId: string): Promise<object | undefined> => {
   const postRes = await myDataSource
     .createQueryBuilder()
     .select("COUNT(id)", "count")
@@ -19,7 +19,7 @@ const isPostExistByPostId = async (postId: string): Promise<object | undefined> 
 }
 
 
-const isPostExistByUserId = async (userId: string | string[] | undefined, postId: string): Promise<object | undefined> => {
+const isPostExistedByUserId = async (userId: string | string[] | undefined, postId: string): Promise<object | undefined> => {
   const userPostRes = await myDataSource
     .createQueryBuilder()
     .select("COUNT(id)", "count")
@@ -92,8 +92,8 @@ const deletePost = async (postId: string): Promise<void> => {
 
 
 export default { 
-  isPostExistByPostId,
-  isPostExistByUserId,
+  isPostExistedByPostId,
+  isPostExistedByUserId,
   createPost,
   getPostList,
   getPost,
